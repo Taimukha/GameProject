@@ -1,19 +1,16 @@
 public class Main {
     public static void main(String[] args) {
-        IMUDAbstractFactory fantasyFactory = new FantasyMUDFactory();
-        IMUDAbstractFactory sciFiFactory = new SciFiMUDFactory();
+        Room room1 = new Room("Тас бөлме", "Бұл қараңғы тас бөлме.");
+        Room room2 = new Room("Орман", "Айналада ағаштар, самал жел есіп тұр.");
 
-        IGameEntity fantasyRoom = fantasyFactory.createRoom("Enchanted Forest");
-        IGameEntity fantasyNPC = fantasyFactory.createNPC("Elf Guardian");
+        room1.connectRoom("forward", room2);
+        room2.connectRoom("back", room1);
 
+        Item sword = new Item("sword");
+        room1.addItem(sword);
 
-        IGameEntity sciFiRoom = sciFiFactory.createRoom("Space Station");
-        IGameEntity sciFiNPC = sciFiFactory.createNPC("Android Sentinel");
-
-
-        fantasyRoom.describe();
-        fantasyNPC.describe();
-        sciFiRoom.describe();
-        sciFiNPC.describe();
+        Player player = new Player("Батыр", room1);
+        MUDController controller = new MUDController(player);
+        controller.runGameLoop();
     }
 }

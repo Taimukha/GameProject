@@ -1,4 +1,4 @@
-public class NPC implements IGameEntity {
+public class NPC {
     private String name;
     private String description;
 
@@ -7,8 +7,16 @@ public class NPC implements IGameEntity {
         this.description = description;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     @Override
-    public void describe() {
-        System.out.println("NPC " + name + ": " + description);
+    public String toString() {
+        return name;
     }
 }
